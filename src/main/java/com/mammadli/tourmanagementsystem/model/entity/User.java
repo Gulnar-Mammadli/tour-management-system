@@ -1,7 +1,6 @@
 package com.mammadli.tourmanagementsystem.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mammadli.tourmanagementsystem.model.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -46,8 +45,7 @@ public class User {
     @JsonProperty(namespace = "phone_number")
     private String phoneNumber;
 
-    @Enumerated(value = EnumType.STRING)
-    private Role roles;
+    private String roles;
     private boolean deleted=false;
 
 }
