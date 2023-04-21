@@ -2,9 +2,7 @@ package com.mammadli.tourmanagementsystem.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,22 +25,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(name = "user_name")
-    @JsonProperty(namespace = "user_name")
+    @Column(nullable = false, name = "user_name")
+    @JsonProperty("user_name")
     private String userName;
 
-    @Size(max = 30)
-    @Email
+    @Size(max = 50)
+    @NotNull
     private String email;
 
-    @Size(min = 6 , max = 20)
+    @Size(min = 6)
+    @Column(nullable = false)
     private String password;
 
-    @NotBlank
+
     @Size(min = 10)
-    @Column(name = "phone_number")
-    @JsonProperty(namespace = "phone_number")
+    @Column(nullable = false,name = "phone_number")
+    @JsonProperty("phone_number")
     private String phoneNumber;
 
     private String roles;
