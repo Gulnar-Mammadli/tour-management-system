@@ -18,10 +18,12 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User addUser(User user) {
+        userRepository.findByUserName(user.getUserName()).ifPresent(u -> {
+            throw new RuntimeException(String.format("User %s already exists", user.getUserName()));
+        });
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        log.info("A new user  {} is added", user.toString());
-        //return "A new user is added to system ";
+        log.info("A new user  {} is added", user);
         return user;
     }
 }
