@@ -23,6 +23,8 @@ import java.util.function.Function;
 @Component
 public class JwtService {
 
+    public static final String SECRET = "4D6351665468576D5A7134743777217A25432A462D4A614E645267556B586E32";
+
     @Autowired
     private MyUserDetailsService userDetailsService;
 
@@ -56,7 +58,6 @@ public class JwtService {
                 // .compact() is the final step, and it builds the JWT and serializes it to a compact, URL-safe string according to the JWT Compact Serialization rules.
                 .signWith(signingKey(), SignatureAlgorithm.HS256).compact();
     }
-    public static final String SECRET = "4D6351665468576D5A7134743777217A25432A462D4A614E645267556B586E32";
 
     private Key signingKey() {
         byte[] keyDecoder = Decoders.BASE64.decode(SECRET);
