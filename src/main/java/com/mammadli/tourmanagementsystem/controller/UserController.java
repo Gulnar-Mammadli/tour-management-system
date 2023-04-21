@@ -34,7 +34,7 @@ public class UserController {
         log.info("authentication.isAuthenticated()  {} ", authentication);
 
         if (authentication.isAuthenticated()) {
-            log.info("jwtService.generateToken(authRequest.getName())  {} ", jwtService.generateToken(userDto.getUserName()).toString());
+//            log.info("jwtService.generateToken(authRequest.getName())  {} ", jwtService.generateToken(userDto.getUserName()).toString());
             return jwtService.generateToken(userDto.getUserName());
         } else {
             throw new UsernameNotFoundException("The user cannot be authenticated");
@@ -52,6 +52,10 @@ public class UserController {
         return "This is an unprotected endpoint";
     }
 
+    @GetMapping("/test")
+    public String adminTestAPI() {
+        return "This is a test endpoint";
+    }
     @GetMapping("/admin")
     public String adminAPI() {
         return "Protected endpoint - only admins are allowed";
