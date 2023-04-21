@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/scripts/001-create-users.sql
+      context: local
+
+#  - include:
+#      file: db/changelog/scripts/202205231535-add-tour.sql
+#      context: local, production
