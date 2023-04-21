@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/public", "/api/auth/signup", "/api/auth/authenticate").permitAll()
-                        .requestMatchers("/api/auth/admin").hasAuthority("ADMIN")
+                        .requestMatchers("/api/auth/admin","/api/auth/test").hasAuthority("ADMIN")
                         .requestMatchers("/api/auth/user").hasAuthority("USER")
                         .anyRequest().authenticated())
                 // Enabling the session manager to control the session
@@ -84,7 +84,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080")); //or add * to allow all origins
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080","http://localhost:8090")); //or add * to allow all origins
         configuration.setAllowCredentials(true);
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")); //to set allowed http methods
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
