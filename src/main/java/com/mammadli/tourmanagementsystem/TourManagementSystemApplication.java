@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TourManagementSystemApplication {
 
 	public static void main(String[] args) {
+		DatabaseInitializer.initialize("tour_db");
 		SpringApplication.run(TourManagementSystemApplication.class, args);
 	}
 
