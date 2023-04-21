@@ -1,0 +1,63 @@
+
+### Create a new user with Role/Authority ADMIN
+POST    http://localhost:8080/api/auth/signup HTTP/1.1
+content-type: application/json
+
+{
+  "user_name": "admin1",
+  "email": "admin1@ut.ee",
+  "password": "admin1",
+  "roles": "ADMIN",
+  "phone_number": "1234567899"
+}
+
+### Create a new user with Role/Authority USER
+POST    http://localhost:8080/api/auth/signup HTTP/1.1
+content-type: application/json
+
+{
+  "user_name":  "user2",
+  "email": "user2@ut.ee",
+  "password": "user2",
+  "roles": "USER",
+  "phone_number": "1234567899"
+}
+
+### Authenticate
+POST    http://localhost:8080/api/auth/authenticate HTTP/1.1
+content-type: application/json
+
+{
+  "name": "admin",
+  "password": "admin1"
+}
+
+### Authenticate
+POST    http://localhost:8080/api/auth/authenticate HTTP/1.1
+content-type: application/json
+
+{
+  "name": "user",
+  "password": "user"
+}
+
+
+###############################################################
+
+### Public endpoint
+GET http://localhost:8080/api/auth/public
+
+
+### Protected endpoint - only admins (Role ADMIN) are allowed by Bearer token
+### Do not forget to add the token you receive after signing in, which will allow you to visit this endpoint, but not the one dedicated for users with USER roles
+GET http://localhost:8080/api/auth/admin
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwic3ViIjoiYWRtaW4iLCJpYXQiOjE2ODE3OTk4MzksImV4cCI6MTY4MTgwMzQzOX0.ylENAfpz1IRM8-qz1-Ja4Q68wXNau2B1LYc7Ge0a3mk
+
+
+### Protected endpoint - only users (Role USER) are allowed by Bearer token
+GET http://localhost:8080/api/auth/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJ1c2VyIiwiaWF0IjoxNjgxNzk4MjcyLCJleHAiOjE2ODE4MDE4NzJ9.1gkN1UcXm1rOS-uXhNe0BZG_wfTFpacr3LVDn2VVZKw
+
+
