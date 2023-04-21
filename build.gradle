@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'org.liquibase:liquibase-core'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
@@ -36,6 +37,14 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
+
 tasks.named('test') {
 	useJUnitPlatform()
+
 }
+
+task install(type: Copy) {
+	into "$buildDir/install"
+	from "src/main"
+}
+
